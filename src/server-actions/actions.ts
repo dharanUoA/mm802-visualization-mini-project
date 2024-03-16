@@ -15,7 +15,8 @@ export async function getAnimeData(domain: string): Promise<Anime[]> {
     // const json = await resp.json();
     // console.log(json);
 
-    const file = await fs.readFile(process.cwd() + "/src/Anime.json", "utf8");
+    // const file = await fs.readFile(process.cwd() + "/src/Anime.json", "utf8");
+    const file = await fs.readFile(process.cwd() + "/data/Anime.json", "utf8");
     const json = JSON.parse(file);
     console.log(json);
 
