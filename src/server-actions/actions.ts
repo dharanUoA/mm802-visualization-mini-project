@@ -1,19 +1,25 @@
 "use server";
 
+import { promises as fs } from "fs";
 import { Anime, AnimeJson } from "@/models/anime";
 
 export async function getAnimeData(domain: string): Promise<Anime[]> {
   let i = 0;
   try {
-    console.log(`domain ${domain}`);
-    const resp = await fetch(`${domain}/data/Anime.json`);
-    if (!resp.ok) {
-      console.log("API ERROR");
-      console.log(await resp.json());
-      return [];
-    }
-    const json = await resp.json();
+    // console.log(`domain ${domain}`);
+    // const resp = await fetch(`${domain}/data/Anime.json`);
+    // if (!resp.ok) {
+    //   console.log("API ERROR");
+    //   console.log(await resp.json());
+    //   return [];
+    // }
+    // const json = await resp.json();
+    // console.log(json);
+
+    const file = await fs.readFile(process.cwd() + "/data/Anime.json", "utf8");
+    const json = JSON.parse(file);
     console.log(json);
+
     const data = json as AnimeJson[];
     const animeList = data.map((item, index) => {
       const relatedAnimeList = checkPropertyValue<string[]>(
