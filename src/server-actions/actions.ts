@@ -4,7 +4,6 @@ import { promises as fs } from "fs";
 import { Anime, AnimeJson } from "@/models/anime";
 
 export async function getAnimeData(domain: string): Promise<Anime[]> {
-  let i = 0;
   try {
     // console.log(`domain ${domain}`);
     // const resp = await fetch(`${domain}/data/Anime.json`);
@@ -16,7 +15,7 @@ export async function getAnimeData(domain: string): Promise<Anime[]> {
     // const json = await resp.json();
     // console.log(json);
 
-    const file = await fs.readFile(process.cwd() + "/data/Anime.json", "utf8");
+    const file = await fs.readFile(process.cwd() + "/src/Anime.json", "utf8");
     const json = JSON.parse(file);
     console.log(json);
 
@@ -26,7 +25,6 @@ export async function getAnimeData(domain: string): Promise<Anime[]> {
         item["Related_anime"]
       );
       const tagsString = checkPropertyValue<string>(item["Tags"]);
-      i = index;
       const anime: Anime = {
         japanese_name: checkPropertyValue<string>(item["Japanese_name"]) ?? "",
         name: checkPropertyValue<string>(item["Name"]) ?? "",
