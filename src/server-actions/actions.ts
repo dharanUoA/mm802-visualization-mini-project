@@ -5,8 +5,16 @@ import { Anime, AnimeJson } from "@/models/anime";
 export async function getAnimeData(domain: string): Promise<Anime[]> {
   let i = 0;
   try {
+    console.log(`domain ${domain}`);
     const resp = await fetch(`${domain}/data/Anime.json`);
-    const data = (await resp.json()) as AnimeJson[];
+    if (!resp.ok) {
+      console.log("API ERROR");
+      console.log(await resp.json());
+      return [];
+    }
+    const json = await resp.json();
+    console.log(json);
+    const data = json as AnimeJson[];
     const animeList = data.map((item, index) => {
       const relatedAnimeList = checkPropertyValue<string[]>(
         item["Related_anime"]
@@ -44,7 +52,7 @@ export async function getAnimeData(domain: string): Promise<Anime[]> {
 
 function checkPropertyValue<T>(value: any): T | undefined {
   if (value) {
-    if (typeof(value) == "string" && value.toLowerCase() == "nan") {
+    if (typeof value == "string" && value.toLowerCase() == "nan") {
       return undefined;
     }
     return value as T;

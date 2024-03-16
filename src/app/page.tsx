@@ -23,6 +23,7 @@ export default function Home() {
 
   const getData = async () => {
     const list = await getAnimeData(document.location.origin);
+    console.log(list);
     setAnimeList(list);
   };
 
