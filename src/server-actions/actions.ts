@@ -2,6 +2,7 @@
 
 import { promises as fs } from "fs";
 import { Anime, AnimeJson } from "@/models/anime";
+import path from "path";
 
 export async function getAnimeData(domain: string): Promise<Anime[]> {
   try {
@@ -16,7 +17,8 @@ export async function getAnimeData(domain: string): Promise<Anime[]> {
     // console.log(json);
 
     // const file = await fs.readFile(process.cwd() + "/src/Anime.json", "utf8");
-    const file = await fs.readFile(process.cwd() + "/data/Anime.json", "utf8");
+    const jsonDirectory = path.join(process.cwd(), "json");
+    const file = await fs.readFile(jsonDirectory + "/Anime.json", "utf8");
     const json = JSON.parse(file);
     console.log(json);
 
