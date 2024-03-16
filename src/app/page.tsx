@@ -14,6 +14,9 @@ import { useEffect, useState } from "react";
 import TopStudiosByAnimeCounts from "@/components/TopStudiosByAnimeCounts";
 import TopStudiosByRatings from "@/components/TopStudiosByRatings";
 import data from "./../Anime.json";
+import TopYearsByAnimeCounts from "@/components/TopYearsByAnimeCounts";
+import TopGenresByAnimeCounts from "@/components/TopGenresByAnimeCounts";
+import TopGenresByAnimeCountsAndTime from "@/components/TopGenresByAnimeCountsAndTime";
 
 export default function Home() {
   const [animeList, setAnimeList] = useState<Anime[]>();
@@ -103,6 +106,30 @@ export default function Home() {
               </AccordionSummary>
               <AccordionDetails>
                 <TopStudiosByRatings animeList={animeList} />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                How has the number of anime released changed over the years?
+              </AccordionSummary>
+              <AccordionDetails>
+                <TopYearsByAnimeCounts animeList={animeList} />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                What are the most common genres?
+              </AccordionSummary>
+              <AccordionDetails>
+                <TopGenresByAnimeCounts animeList={animeList} />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                How does distribution of genre changes over time?
+              </AccordionSummary>
+              <AccordionDetails>
+                <TopGenresByAnimeCountsAndTime animeList={animeList} />
               </AccordionDetails>
             </Accordion>
           </>
