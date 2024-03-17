@@ -26,7 +26,7 @@ export default function AnimeTitleWordCloud({ animeList }: TopStudiosProps) {
   const [chartData, setChartData] = useState<TopStudioChartData>();
   const [formData, setFormData] = useState<FormType>({
     top: TopOptions[0].value,
-    years: YearOptions[0].value,
+    years: -1,
   });
 
   useEffect(() => {
