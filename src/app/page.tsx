@@ -18,6 +18,8 @@ import TopYearsByAnimeCounts from "@/components/TopYearsByAnimeCounts";
 import TopGenresByAnimeCounts from "@/components/TopGenresByAnimeCounts";
 import TopGenresByAnimeCountsAndTime from "@/components/TopGenresByAnimeCountsAndTime";
 import TopGenresByRatingsAndTime from "@/components/TopGenresByRatingsAndTime";
+import TopStudiosByRatingsAndTimeBubble from "@/components/TopStudioByRatingsAndTimeBubble";
+import AnimeTitleWordCloud from "@/components/AnimeTitleWordCloud";
 
 export default function Home() {
   const [animeList, setAnimeList] = useState<Anime[]>();
@@ -116,6 +118,14 @@ export default function Home() {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                Top Studios - by ratings over time
+              </AccordionSummary>
+              <AccordionDetails>
+                <TopStudiosByRatingsAndTimeBubble animeList={animeList} />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 How has the number of anime released changed over the years?
               </AccordionSummary>
               <AccordionDetails>
@@ -144,6 +154,14 @@ export default function Home() {
               </AccordionSummary>
               <AccordionDetails>
                 <TopGenresByRatingsAndTime animeList={animeList} />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                Word cloud of most common words in anime titles
+              </AccordionSummary>
+              <AccordionDetails>
+                <AnimeTitleWordCloud animeList={animeList} />
               </AccordionDetails>
             </Accordion>
           </>

@@ -1,22 +1,11 @@
-"use client";
-
 import { Anime } from "@/models/anime";
 import { TopOptions, YearOptions } from "@/utils";
 import { Chip, Stack } from "@mui/material";
-import { DefaultizedPieValueType } from "@mui/x-charts";
-import { PieChart } from "@mui/x-charts/PieChart";
 import React, { useEffect, useState } from "react";
+import WordCloud from "react-d3-cloud";
 
 interface TopStudiosProps {
   animeList: Anime[];
-}
-
-interface TopStudioChartData {
-  series: {
-    data: { id: number; value: number; label: string }[];
-    innerRadius: number;
-    arcLabel?: (valType: DefaultizedPieValueType) => string;
-  }[];
 }
 
 interface FormType {
@@ -24,9 +13,16 @@ interface FormType {
   years: number;
 }
 
-const TopOptionsForTopStudioComponet = TopOptions.filter((x) => x.value <= 20);
+interface TopStudioChartData {
+  data: WordCloudDataType[];
+}
 
-export default function TopStudiosByRatings({ animeList }: TopStudiosProps) {
+interface WordCloudDataType {
+  text: string;
+  value: number;
+}
+
+export default function AnimeTitleWordCloud({ animeList }: TopStudiosProps) {
   const [chartData, setChartData] = useState<TopStudioChartData>();
   const [formData, setFormData] = useState<FormType>({
     top: TopOptions[0].value,
@@ -48,7 +44,7 @@ export default function TopStudiosByRatings({ animeList }: TopStudiosProps) {
   };
 
   const visualize = (top: number, years: number) => {
-    let animes = animeList.filter((x) => !!x.studio && !!x.rating).slice();
+    let animes = animeList.filter((x) => !!x.tags);
 
     if (years != -1) {
       const currentyear = new Date().getFullYear();
@@ -56,51 +52,39 @@ export default function TopStudiosByRatings({ animeList }: TopStudiosProps) {
       animes = animes.filter((x) => x.release_year > minYear);
     }
 
-    let studioWithRatings = animes.reduce<{ studio: string; rating: number }[]>(
-      (acc, obj) => {
-        const match = acc.find((x) => x.studio == obj.studio);
-        if (match) {
-          match.rating += obj.rating;
-        } else {
-          acc.push({
-            studio: obj.studio,
-            rating: obj.rating,
-          });
-        }
-        return acc;
-      },
-      []
-    );
+    let wordArray = animes.reduce((acc: WordCloudDataType[], obj) => {
+      const name = obj.name ?? obj.japanese_name;
+      if (name) {
+        name.split(" ").forEach((x) => {
+          if (x) {
+            x = x.replace(/[^\w\s]/gi, "");
+            if (x) {
+              const match = acc.find((y) => y.text == x);
+              if (match) {
+                match.value += 1;
+              } else {
+                acc.push({ text: x, value: 1 });
+              }
+            }
+          }
+        });
+      }
+      return acc;
+    }, []);
 
-    let totalRatings = 0;
-    studioWithRatings.forEach((x) => (totalRatings += x.rating));
+    wordArray = wordArray.sort((a, b) => b.value - a.value).slice(0, top * 10);
 
-    studioWithRatings = studioWithRatings
-      .sort((a, b) => b.rating - a.rating)
-      .slice(0, top);
-
-    const series = [
-      {
-        data: studioWithRatings.map((x, i) => ({
-          id: i,
-          value: (x.rating / totalRatings) * 100,
-          label: x.studio,
-        })),
-        innerRadius: 80,
-      },
-    ];
-
-    setChartData({ series });
+    setChartData({ data: wordArray });
   };
 
   return (
     <>
       <div className="flex justify-between">
         <Stack direction="row" spacing={1}>
-          {TopOptionsForTopStudioComponet.map((x, i) => (
+          {TopOptions.map((x, i) => (
             <Chip
               key={i}
-              label={x.label}
+              label={`${x.label}0`}
               color="primary"
               variant={formData?.top == x.value ? "filled" : "outlined"}
               clickable
@@ -121,9 +105,7 @@ export default function TopStudiosByRatings({ animeList }: TopStudiosProps) {
           ))}
         </Stack>
       </div>
-      {chartData && (
-        <PieChart series={chartData.series} height={400}></PieChart>
-      )}
+      {chartData && <WordCloud data={chartData.data} />}
     </>
   );
 }

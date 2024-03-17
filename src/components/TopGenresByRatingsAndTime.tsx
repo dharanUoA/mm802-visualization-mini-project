@@ -128,7 +128,6 @@ export default function TopGenresByRatingsAndTime({
           return 0;
         }
       });
-      // .map((x) => x.ratings / x.animeCount);
 
       return {
         id: tag.label,
