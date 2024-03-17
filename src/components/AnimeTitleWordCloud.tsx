@@ -25,7 +25,7 @@ interface WordCloudDataType {
 export default function AnimeTitleWordCloud({ animeList }: TopStudiosProps) {
   const [chartData, setChartData] = useState<TopStudioChartData>();
   const [formData, setFormData] = useState<FormType>({
-    top: TopOptions[0].value,
+    top: TopOptions[3].value,
     years: -1,
   });
 
@@ -55,19 +55,22 @@ export default function AnimeTitleWordCloud({ animeList }: TopStudiosProps) {
     let wordArray = animes.reduce((acc: WordCloudDataType[], obj) => {
       const name = obj.name ?? obj.japanese_name;
       if (name) {
-        name.split(" ").forEach((x) => {
-          if (x) {
-            x = x.replace(/[^\w\s]/gi, "");
+        name
+          .split(" ")
+          .filter((x) => x.length > 3)
+          ?.forEach((x) => {
             if (x) {
-              const match = acc.find((y) => y.text == x);
-              if (match) {
-                match.value += 1;
-              } else {
-                acc.push({ text: x, value: 1 });
+              x = x.replace(/[^\w\s]/gi, "");
+              if (x) {
+                const match = acc.find((y) => y.text == x);
+                if (match) {
+                  match.value += 1;
+                } else {
+                  acc.push({ text: x, value: 1 });
+                }
               }
             }
-          }
-        });
+          });
       }
       return acc;
     }, []);
