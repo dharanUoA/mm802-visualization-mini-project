@@ -37,11 +37,11 @@ export const TopOptions: Option[] = [
 export const YearOptions: Option[] = [
   {
     label: "Last 5 Years",
-    value: 5,
+    value: 8,
   },
   {
     label: "Last 10 Years",
-    value: 10,
+    value: 13,
   },
   {
     label: "Overall",

@@ -17,6 +17,7 @@ import data from "./../Anime.json";
 import TopYearsByAnimeCounts from "@/components/TopYearsByAnimeCounts";
 import TopGenresByAnimeCounts from "@/components/TopGenresByAnimeCounts";
 import TopGenresByAnimeCountsAndTime from "@/components/TopGenresByAnimeCountsAndTime";
+import TopGenresByRatingsAndTime from "@/components/TopGenresByRatingsAndTime";
 
 export default function Home() {
   const [animeList, setAnimeList] = useState<Anime[]>();
@@ -56,7 +57,12 @@ export default function Home() {
       (anime) =>
         (!!anime.name || !!anime.japanese_name) &&
         !!anime.rating &&
-        (!!anime.release_year || !!anime.studio || !!anime.tags || !!anime.type)
+        (!!anime.release_year ||
+          !!anime.studio ||
+          !!anime.tags ||
+          !!anime.type) &&
+        anime.release_year &&
+        anime.release_year < 2022
     );
   };
 
@@ -73,7 +79,7 @@ export default function Home() {
   return (
     <>
       <div className="text-4xl text-center uppercase font-bold mb-2">
-        MM 802 - Visualization Mini-project
+        Anime Universe: Exploring Trends, Genres, and Ratings
       </div>
       <div>
         <div>
@@ -130,6 +136,14 @@ export default function Home() {
               </AccordionSummary>
               <AccordionDetails>
                 <TopGenresByAnimeCountsAndTime animeList={animeList} />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                How does distribution of genre changes over time?
+              </AccordionSummary>
+              <AccordionDetails>
+                <TopGenresByRatingsAndTime animeList={animeList} />
               </AccordionDetails>
             </Accordion>
           </>
