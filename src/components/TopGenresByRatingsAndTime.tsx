@@ -139,7 +139,6 @@ export default function TopGenresByRatingsAndTime({
       };
     });
 
-    console.log(series);
     const allYearsInDate = allYears.map((x) => new Date(x, 0, 1));
 
     const xAxis: xAxisType[] = [

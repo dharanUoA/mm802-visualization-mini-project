@@ -6,13 +6,19 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import AdbIcon from "@mui/icons-material/Adb";
+import Image from "next/image";
+import icon from "./../../public/Ball 4 Stars.ico";
 
 function ResponsiveAppBar() {
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Image
+            src={icon}
+            alt="icon"
+            style={{ width: "30px", height: "auto", marginRight: "5px" }}
+          ></Image>
           <Typography
             variant="h6"
             noWrap
@@ -28,10 +34,9 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Anime Universe
           </Typography>
 
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -48,7 +53,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Anime Universe
           </Typography>
         </Toolbar>
       </Container>

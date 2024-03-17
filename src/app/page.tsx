@@ -6,8 +6,10 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   CircularProgress,
   Link as MUILink,
+  Skeleton,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useEffect, useState } from "react";
@@ -81,14 +83,14 @@ export default function Home() {
   return (
     <>
       <div className="text-4xl text-center uppercase font-bold mb-2">
-        Anime Universe: Exploring Trends, Genres, and Ratings
+        Exploring Trends, Genres, and Ratings
       </div>
       <div>
         <div>
           The aim of this project is to create a small visualization of anime
           data.
         </div>
-        <div>
+        <div className="mb-5">
           <MUILink
             href="https://www.kaggle.com/code/anuragnautiyal88/anime-analysis-jovian-project"
             target="_blank"
@@ -96,7 +98,17 @@ export default function Home() {
             Dataset Link
           </MUILink>
         </div>
-        {!animeList && <CircularProgress />}
+        {/* {!animeList && <CircularProgress />} */}
+        {!animeList && (
+          <Box>
+            <Skeleton height={40} />
+            <Skeleton height={40} />
+            <Skeleton animation="wave" height={40} />
+            <Skeleton animation="wave" height={40} />
+            <Skeleton animation={false} height={40} />
+            <Skeleton animation={false} height={40} />
+          </Box>
+        )}
         {animeList && (
           <>
             <TableView animeList={animeList} />

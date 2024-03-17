@@ -5,6 +5,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
 import ResponsiveAppBar from "@/components/ResponsiveAppBar";
 import { Box, Container } from "@mui/material";
+import Image from "next/image";
+import tanjiro from "./../../public/tanjiro.png";
 
 export const metadata: Metadata = {
   title: "Anime Universe",
@@ -19,11 +21,19 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen">
+        {/* <Image
+          alt="Tanjiro"
+          src={tanjiro}
+          height={500}
+          style={{
+            position: "fixed",
+            right: 0,
+          }}
+        /> */}
         <AppRouterCacheProvider options={{ key: "css" }}>
           <ThemeProvider theme={theme}>
             <ResponsiveAppBar />
             <Box
-              id="hero"
               sx={{
                 width: "100%",
                 backgroundImage: "linear-gradient(180deg, #CEE5FD, #FFF)",

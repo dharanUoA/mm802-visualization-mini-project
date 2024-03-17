@@ -12,7 +12,14 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
 import { Anime } from "@/models/anime";
-import { Rating, TablePagination } from "@mui/material";
+import {
+  FormControlLabel,
+  FormGroup,
+  Rating,
+  Switch,
+  TablePagination,
+  Tooltip,
+} from "@mui/material";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -89,6 +96,12 @@ const headCells: readonly HeadCell[] = [
     label: "Production Studio",
     isSortable: true,
   },
+  {
+    id: "tags",
+    numeric: false,
+    label: "Genre",
+    isSortable: false,
+  },
 ];
 
 interface EnhancedTableHeadProps {
@@ -116,22 +129,27 @@ function EnhancedTableHead(props: EnhancedTableHeadProps) {
               key={headCell.id}
               align={headCell.numeric ? "right" : "left"}
               padding="normal"
+              size="small"
               sortDirection={orderBy === headCell.id ? order : false}
             >
-              <TableSortLabel
-                active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : "asc"}
-                onClick={createSortHandler(headCell.id)}
-              >
-                {headCell.label}
-                {orderBy === headCell.id ? (
-                  <Box component="span" sx={visuallyHidden}>
-                    {order === "desc"
-                      ? "sorted descending"
-                      : "sorted ascending"}
-                  </Box>
-                ) : null}
-              </TableSortLabel>
+              {headCell.isSortable ? (
+                <TableSortLabel
+                  active={orderBy === headCell.id}
+                  direction={orderBy === headCell.id ? order : "asc"}
+                  onClick={createSortHandler(headCell.id)}
+                >
+                  {headCell.label}
+                  {orderBy === headCell.id ? (
+                    <Box component="span" sx={visuallyHidden}>
+                      {order === "desc"
+                        ? "sorted descending"
+                        : "sorted ascending"}
+                    </Box>
+                  ) : null}
+                </TableSortLabel>
+              ) : (
+                headCell.label
+              )}
             </TableCell>
           );
         })}
@@ -187,8 +205,7 @@ export function EnhancedTable({ animeList }: EnhancedTableProps) {
       <Paper sx={{ width: "100%", mb: 2 }}>
         <TableContainer sx={{ maxHeight: 500 }}>
           <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
+            sx={{ minWidth: 750, zIndex: 50 }}
             size="small"
             stickyHeader
           >
@@ -234,6 +251,24 @@ export function EnhancedTable({ animeList }: EnhancedTableProps) {
                     <TableCell align={headCells[4].numeric ? "right" : "left"}>
                       {row.studio}
                     </TableCell>
+                    <TableCell
+                      align={headCells[4].numeric ? "right" : "left"}
+                      size="small"
+                    >
+                      {row.tags.filter((x) => !!x).join(", ").length > 35 ? (
+                        <Tooltip title={row.tags.filter((x) => !!x).join(", ")}>
+                          <span>
+                            {row.tags
+                              .filter((x) => !!x)
+                              .join(", ")
+                              .slice(0, 35)}
+                            ...
+                          </span>
+                        </Tooltip>
+                      ) : (
+                        row.tags.filter((x) => !!x).join(",")
+                      )}
+                    </TableCell>
                   </TableRow>
                 );
               })}
@@ -259,10 +294,24 @@ interface TableViewProps {
 }
 
 export default function TableView({ animeList }: TableViewProps) {
+  const [showTable, setShowTable] = React.useState(true);
+
   return (
     <>
-      <div></div>
-      <EnhancedTable animeList={animeList} />
+      <div>
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={showTable}
+                onChange={(event) => setShowTable(event.target.checked)}
+              />
+            }
+            label="View Dataset"
+          />
+        </FormGroup>
+      </div>
+      {showTable && <EnhancedTable animeList={animeList} />}
     </>
   );
 }
