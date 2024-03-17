@@ -10,6 +10,7 @@ import {
   CircularProgress,
   Link as MUILink,
   Skeleton,
+  Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useEffect, useState } from "react";
@@ -83,13 +84,29 @@ export default function Home() {
   return (
     <>
       <div className="text-4xl text-center uppercase font-bold mb-2">
-        Exploring Trends, Genres, and Ratings
+        <Typography
+          noWrap
+          variant="h3"
+          className="py-8"
+          sx={{
+            fontWeight: 700,
+            fontFamily: "monospace",
+            color: 'black',
+          }}
+        >
+          Exploring Trends, Genres, and Ratings
+        </Typography>
       </div>
       <div>
-        <div>
+        <Typography
+          noWrap
+          sx={{
+            fontFamily: "monospace",
+          }}
+        >
           The aim of this project is to create a small visualization of anime
           data.
-        </div>
+        </Typography>
         <div className="mb-5">
           <MUILink
             href="https://www.kaggle.com/code/anuragnautiyal88/anime-analysis-jovian-project"
@@ -114,7 +131,14 @@ export default function Home() {
             <TableView animeList={animeList} />
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                Top Studios - by total number of anime produced
+                <Typography
+                  noWrap
+                  sx={{
+                    fontFamily: "monospace",
+                  }}
+                >
+                  Top Studios - by total number of anime produced
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <TopStudiosByAnimeCounts animeList={animeList} />
@@ -122,7 +146,14 @@ export default function Home() {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                Top Studios - by ratings given to the anime
+                <Typography
+                  noWrap
+                  sx={{
+                    fontFamily: "monospace",
+                  }}
+                >
+                  Top Studios - by ratings given to the anime
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <TopStudiosByRatings animeList={animeList} />
@@ -130,7 +161,14 @@ export default function Home() {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                Top Studios - by ratings over time
+                <Typography
+                  noWrap
+                  sx={{
+                    fontFamily: "monospace",
+                  }}
+                >
+                  Top Studios - by ratings over time
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <TopStudiosByRatingsAndTimeBubble animeList={animeList} />
@@ -138,7 +176,14 @@ export default function Home() {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                How has the number of anime released changed over the years?
+                <Typography
+                  noWrap
+                  sx={{
+                    fontFamily: "monospace",
+                  }}
+                >
+                  How has the number of anime released changed over the years?
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <TopYearsByAnimeCounts animeList={animeList} />
@@ -146,7 +191,14 @@ export default function Home() {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                What are the most common genres?
+                <Typography
+                  noWrap
+                  sx={{
+                    fontFamily: "monospace",
+                  }}
+                >
+                  What are the most common genres?
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <TopGenresByAnimeCounts animeList={animeList} />
@@ -154,7 +206,14 @@ export default function Home() {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                How does distribution of genre changes over time?
+                <Typography
+                  noWrap
+                  sx={{
+                    fontFamily: "monospace",
+                  }}
+                >
+                  How does distribution of genre changes over time?
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <TopGenresByAnimeCountsAndTime animeList={animeList} />
@@ -162,7 +221,14 @@ export default function Home() {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                How does distribution of genre changes over time?
+                <Typography
+                  noWrap
+                  sx={{
+                    fontFamily: "monospace",
+                  }}
+                >
+                  How does distribution of genre changes over time?
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <TopGenresByRatingsAndTime animeList={animeList} />
@@ -170,7 +236,14 @@ export default function Home() {
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                Word cloud of most common words in anime titles
+                <Typography
+                  noWrap
+                  sx={{
+                    fontFamily: "monospace",
+                  }}
+                >
+                  Word cloud of most common words in anime titles
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <AnimeTitleWordCloud animeList={animeList} />

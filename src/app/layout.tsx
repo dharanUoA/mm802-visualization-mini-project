@@ -7,6 +7,7 @@ import ResponsiveAppBar from "@/components/ResponsiveAppBar";
 import { Box, Container } from "@mui/material";
 import Image from "next/image";
 import tanjiro from "./../../public/tanjiro.png";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Anime Universe",
@@ -43,6 +44,7 @@ export default async function RootLayout({
             >
               <Container sx={{ paddingBottom: 10 }}>{children}</Container>
             </Box>
+            <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
