@@ -104,11 +104,13 @@ export default function TopStudiosByRatingsAndTimeBubble({
           .sort((a, b) => a.year - b.year)
           .map((y) => ({
             x: y.year,
-            y: (y.totalRating / y.animeCount) * 100,
+            y: (y.totalRating / y.animeCount),
             r: y.animeCount,
           })),
       };
     });
+
+    console.log(series);
 
     setChartData({ data: { datasets: series } });
   };

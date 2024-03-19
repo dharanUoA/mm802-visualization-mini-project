@@ -91,7 +91,7 @@ export default function Home() {
           sx={{
             fontWeight: 700,
             fontFamily: "monospace",
-            color: 'black',
+            color: "black",
           }}
         >
           Exploring Trends, Genres, and Ratings
@@ -99,13 +99,20 @@ export default function Home() {
       </div>
       <div>
         <Typography
-          noWrap
           sx={{
             fontFamily: "monospace",
+            marginBottom: '1rem'
           }}
         >
-          The aim of this project is to create a small visualization of anime
-          data.
+          In a world where anime has become a remarkable part of global
+          entertainment, understanding its trends and popularity is crucial for
+          both enthusiasts and industry professionals alike. Our dashboard aims
+          to provide a comprehensive overview of these trends by utilizing a
+          diverse array of visualizations including bubble charts, bar charts,
+          pie charts, histograms, and word clouds. Through these visualizations,
+          users can discern trends in studio production, anime ratings, and
+          yearly releases, gaining valuable insights into the evolving
+          preferences and dynamics of the anime community.
         </Typography>
         <div className="mb-5">
           <MUILink
