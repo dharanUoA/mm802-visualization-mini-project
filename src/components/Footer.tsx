@@ -37,7 +37,7 @@ export default function Footer() {
                     textDecoration: "none",
                   }}
                 >
-                  Anime Universe
+                  Anime Verse
                 </Typography>
               </span>
             </div>
@@ -60,7 +60,7 @@ export default function Footer() {
                 fontFamily: "monospace",
               }}
             >
-              © 2024 Anime Universe . All Rights Reserved.
+              © 2024 Anime Verse . All Rights Reserved.
             </Typography>
           </span>
         </div>

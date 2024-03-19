@@ -34,7 +34,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            Anime Universe
+            Anime Verse
           </Typography>
 
           <Typography
@@ -53,7 +53,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            Anime Universe
+            Anime Verse
           </Typography>
         </Toolbar>
       </Container>

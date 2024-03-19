@@ -1,4 +1,4 @@
-# Anime Universe: Exploring Trends, Genres, and Ratings
+# Anime Verse: Exploring Trends, Genres, and Ratings
 
 In a world where anime has become a remarkable part of global entertainment, understanding its trends and popularity is crucial for both enthusiasts and industry professionals alike. Our dashboard aims to provide a comprehensive overview of these trends by utilizing a diverse array of visualizations including bubble charts, bar charts, pie charts, histograms, and word clouds. Through these visualizations, users can discern trends in studio production, anime ratings, and yearly releases, gaining valuable insights into the evolving preferences and dynamics of the anime community.
 
