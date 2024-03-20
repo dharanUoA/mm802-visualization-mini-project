@@ -32,12 +32,12 @@ interface FormType {
 
 const tags = [
   {
-    label: "Based on a Manga",
-    dataKey: "manga",
-  },
-  {
     label: "Comedy",
     dataKey: "comedy",
+  },
+  {
+    label: "Based on a Manga",
+    dataKey: "manga",
   },
   {
     label: "Action",

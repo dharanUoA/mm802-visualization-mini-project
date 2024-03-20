@@ -101,7 +101,8 @@ export default function Home() {
         <Typography
           sx={{
             fontFamily: "monospace",
-            marginBottom: '1rem'
+            marginBottom: "1rem",
+            color: "black",
           }}
         >
           In a world where anime has become a remarkable part of global
@@ -144,7 +145,8 @@ export default function Home() {
                     fontFamily: "monospace",
                   }}
                 >
-                  Top Studios - by total number of anime produced
+                  Which anime studios have dominated the industry in terms of
+                  production volume over the years?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -159,7 +161,8 @@ export default function Home() {
                     fontFamily: "monospace",
                   }}
                 >
-                  Top Studios - by ratings given to the anime
+                  Which anime studios consistently produce high-quality content,
+                  as evidenced by their ratings?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -174,7 +177,9 @@ export default function Home() {
                     fontFamily: "monospace",
                   }}
                 >
-                  Top Studios - by ratings over time
+                  Which anime studios have consistently produced a high volume
+                  of anime while maintaining a high average rating over the
+                  years?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -189,7 +194,7 @@ export default function Home() {
                     fontFamily: "monospace",
                   }}
                 >
-                  How has the number of anime released changed over the years?
+                  How has the volume of anime releases evolved over the years?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -204,7 +209,8 @@ export default function Home() {
                     fontFamily: "monospace",
                   }}
                 >
-                  What are the most common genres?
+                  Which anime genres have consistently captivated audiences over
+                  the years?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -219,7 +225,8 @@ export default function Home() {
                     fontFamily: "monospace",
                   }}
                 >
-                  How does distribution of genre changes over time?
+                  How does the distribution of volume releases vary across the
+                  top 5 genres of anime throughout the years?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -234,7 +241,8 @@ export default function Home() {
                     fontFamily: "monospace",
                   }}
                 >
-                  How does distribution of genre changes over time?
+                  How does the distribution of average ratings vary across the
+                  top 5 genres of anime throughout the years?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -249,7 +257,8 @@ export default function Home() {
                     fontFamily: "monospace",
                   }}
                 >
-                  Word cloud of most common words in anime titles
+                  What are the most common words found in anime titles based on
+                  their frequency?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
